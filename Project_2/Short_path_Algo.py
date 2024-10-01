@@ -1,3 +1,5 @@
+# Shortest Path Finder using Dijkstra's Algorithm
+
 # A graph representation where each node has connected nodes and their respective distances.
 my_graph = {
     'A': [('B', 5), ('C', 3), ('E', 11)],  # Node 'A' is connected to 'B', 'C', and 'E' with distances 5, 3, and 11, respectively.
