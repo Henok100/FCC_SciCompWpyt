@@ -1,21 +1,40 @@
 # Title: Time Addition Function
 # This script defines a function to add a duration to a starting time, 
-# returning the new time in a standard format. It can also take an optional
-# starting day of the week and correctly handle transitions between AM and PM,
-# as well as wrap around the week.
+# returning the new time in a 12-hour format with AM/PM notation. 
+# The function can also take an optional starting day of the week and correctly handle 
+# transitions between AM and PM, as well as wrap around the week if multiple days pass.
 
 def add_time(start, duration, starting_day=''):
+    """
+    Add a duration to a starting time and return the new time.
+    
+    Parameters:
+    - start (str): The starting time in the format "HH:MM AM/PM".
+    - duration (str): The duration to add, in the format "HH:MM".
+    - starting_day (str, optional): The starting day of the week. Default is an empty string ('').
+      If not provided, the result will only include the updated time without day information.
+    
+    Returns:
+    - str: The new time, including any transitions in AM/PM, and optionally the updated day 
+      and number of days passed.
+    
+    Example:
+    - add_time("11:43 AM", "00:20") returns "12:03 PM"
+    - add_time("10:10 PM", "3:30", "Monday") returns "1:40 AM, Tuesday"
+    - add_time("3:30 PM", "2:12", "Monday") returns "5:42 PM, Monday"
+    """
+    
     # Split start time into hours, minutes, and period (AM/PM)
     time, period = start.split()  # Split the time and period (AM/PM)
-    start_hour, start_minute = map(int, time.split(':'))  # Convert to integers
+    start_hour, start_minute = map(int, time.split(':'))  # Convert time parts to integers
 
     # Split duration into hours and minutes
-    duration_hour, duration_minute = map(int, duration.split(':'))  # Convert to integers
+    duration_hour, duration_minute = map(int, duration.split(':'))  # Convert duration parts to integers
 
     # Convert start time to 24-hour format for easier calculations
-    if period == 'PM' and start_hour != 12:  # Convert PM hours
+    if period == 'PM' and start_hour != 12:  # Convert PM hours (except 12 PM)
         start_hour += 12  # Add 12 to convert to 24-hour format
-    elif period == 'AM' and start_hour == 12:  # Convert 12 AM to 0 hours
+    elif period == 'AM' and start_hour == 12:  # Convert 12 AM to 0 hours (midnight)
         start_hour = 0  # Midnight in 24-hour format
 
     # Calculate total minutes from start time and duration
