@@ -70,27 +70,3 @@ def arithmetic_arranger(problems, show_answers=False):
 
 # Example usage: We arrange 4 arithmetic problems and display the answers.
 print(arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True))
-
-
-"""
-Key Concepts:
-Validation:
-
-The script first validates that the input problems follow certain rules:
-No more than 5 problems.
-Each operand (number) must be no more than 4 digits.
-Each operand must consist only of digits (i.e., no letters or special characters).
-The operator must be either + or -.
-Formatting:
-
-Each operand is right-aligned to ensure the problems are visually consistent.
-A line of dashes is used to separate the problem from its solution.
-Four spaces separate each problem from the next.
-Optional Display of Answers:
-
-If the show_answers flag is set to True, the result of each problem is calculated and displayed under the corresponding dash line.
-If show_answers is False, only the formatted problems are shown, without answers.
-String Alignment:
-
-rjust(width) is used to right-align each operand so that it aligns neatly when displayed.
-"""
